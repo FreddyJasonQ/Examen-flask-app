@@ -3,7 +3,39 @@
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-<h1>Bienvenido a la App</h1>
-<a href="{{ url_for('register') }}" class="btn btn-primary">Registrarse</a>
-<a href="{{ url_for('login') }}" class="btn btn-success">Iniciar Sesión</a>
+<div class="container mt-5">
+  <div class="text-center mb-4">
+    <h1 class="display-4">📋 App de Tareas</h1>
+    <p class="lead">Gestiona tus tareas personales fácilmente desde un solo lugar.</p>
+    <div class="mt-4">
+      <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg me-2">Registrarse</a>
+      <a href="{{ url_for('login') }}" class="btn btn-success btn-lg">Iniciar Sesión</a>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+      <h4 class="mb-0">📌 Tareas Públicas Almacenadas</h4>
+    </div>
+    <div class="card-body">
+      {% if tasks %}
+        <ul class="list-group">
+          {% for task in tasks %}
+            <li class="list-group-item">
+              <h5 class="mb-1">{{ task.title }}</h5>
+              <p class="mb-1">{{ task.description }}</p>
+              <span class="badge bg-{{ 'success' if task.completed else 'secondary' }}">
+                {{ 'Completada' if task.completed else 'Pendiente' }}
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">No hay tareas almacenadas.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

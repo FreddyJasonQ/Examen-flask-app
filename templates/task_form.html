@@ -1,0 +1,23 @@
+<!-- templates/task_form.html -->
+{% extends 'base.html' %}
+
+{% block title %}Nueva Tarea{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">📝 Crear Nueva Tarea</h2>
+
+  <form method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Título</label>
+      <input type="text" class="form-control" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea class="form-control" name="description" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Agregar Tarea</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
